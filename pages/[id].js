@@ -5,7 +5,7 @@ import supabase from "../utils/supabase";
 export async function getServerSideProps({ params }) {
   const { data: post, error } = await supabase
     .from("posts")
-    .select("*")
+    .select("*, comments(*)")
     .eq("id", params.id)
     .single();
 
@@ -30,6 +30,7 @@ export default function PostPage({ post }) {
 
       <h1>{post.title}</h1>
       <p>{post.description}</p>
+      <p>{JSON.stringify(post, null, 2)}</p>
     </div>
   );
 }
