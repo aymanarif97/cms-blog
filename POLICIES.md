@@ -1,0 +1,1 @@
+CREATE POLICY "Public Read Posts" ON public.posts FOR SELECT USING (is_published = true);
